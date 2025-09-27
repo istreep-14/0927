@@ -170,9 +170,6 @@ async function main() {
   const white = game.white || {};
   const black = game.black || {};
   const winner = deriveWinner(white.result, black.result);
-  const drv_result_category_white = resultCategory(white.result);
-  const drv_is_variant = rules && rules !== 'chess' ? '1' : '0';
-  const drv_moves_count = countMoves(pgnMoves);
 
   // my/opp mapping based on configured username
   const meIsWhite = (white.username || '').toLowerCase() === ME.toLowerCase();
@@ -253,12 +250,8 @@ async function main() {
     drv_start_date,
     drv_start_time,
     drv_duration,
-    drv_result_category_white,
-    drv_is_variant,
-    drv_winner: winner,
-    drv_moves_count,
-    drv_white_outcome: drv_result_category_white,
-    drv_white_score: scoreFromOutcome(drv_result_category_white),
+    drv_white_outcome: resultCategory(white.result),
+    drv_white_score: scoreFromOutcome(resultCategory(white.result)),
     drv_black_outcome: resultCategory(black.result),
     drv_black_score: scoreFromOutcome(resultCategory(black.result)),
     drv_end_reason: endReasonFromResults(white.result, black.result),
