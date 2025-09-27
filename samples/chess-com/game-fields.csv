@@ -12,6 +12,10 @@ end_reason,string,"Reason game ended (loser result or draw reason)",derived,main
 
 # Secondary (Games_Meta) — computed/stored but not in main sheet
 movetext,string,"Full PGN movetext (headers separate)",pgn,meta
+time_control,string,"PGN-compliant time control (e.g., 600 or 180+2)",json,meta
+tc_base,integer,"Derived: live base time from time_control",derived,meta
+tc_inc,integer,"Derived: live increment from time_control",derived,meta
+tc_corr,integer,"Derived: daily response seconds from time_control (1/SECONDS)",derived,meta
 eco_code,string,"PGN ECO code",pgn,meta
 eco_url,string (URL),"Opening reference URL from JSON (if available)",json,meta
 start_dt,datetime,"Local start datetime (from start_time or PGN UTC)",derived,meta
