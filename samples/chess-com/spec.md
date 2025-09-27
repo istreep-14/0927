@@ -58,6 +58,9 @@ Use `game-fields.csv` for the canonical list (names/types/origin/scope). High-le
 - PGN headers (selected): `event`, `site`, `date`, `round`, `hdr_white`, `hdr_black`, `result_code`, `eco_code`, `hdr_time_control`, `termination_text`, `hdr_start_time`, `hdr_end_date`, `hdr_end_time`, `viewer_link`, `opening`, `variation`, `current_fen`, `timezone`, `utc_date`, `utc_time`, `hdr_white_elo`, `hdr_black_elo`, `hdr_setup`, `hdr_fen`.
 - Moves/positions: `movetext`, `san_moves`, `clock_times`, `time_spent`, `start_fen`, `final_fen`, `current_fen`.
 
+### URL numeric id for meta (optional)
+- `url_numeric_id`: numeric id parsed from the end of the game `url` (e.g., 142733007366). Use only as supplemental metadata; `game_uuid` remains the primary key.
+
 ### Machine-readable schema
 - `game-fields.csv` is the canonical schema. Generators read this file to decide column order and to stay aligned with this spec.
 
