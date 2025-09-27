@@ -52,6 +52,16 @@ function scoreFromOutcome(outcome){ if(outcome==='win')return'1'; if(outcome==='
 
 function countMoves(pgnMoves){ if(!pgnMoves)return''; const matches=pgnMoves.match(/\b\d+\./g); return matches?String(matches.length):'0'; }
 
+function endReasonFromResults(whiteRes, blackRes){
+  const w = String(whiteRes||'').toLowerCase();
+  const b = String(blackRes||'').toLowerCase();
+  if (!w && !b) return '';
+  if (w === 'win') return b || '';
+  if (b === 'win') return w || '';
+  // likely a draw; pick one (should be the same)
+  return w || b;
+}
+
 function valueMapForGame(game, fields){
   const pgn=game.pgn||''; const ph=parsePgnHeaders(pgn); const pgnMoves=extractPgnMoves(pgn).replace(/\s+/g,' ').trim();
   const timeClass=game.time_class||''; const rules=game.rules||''; const drv_type=timeClass==='daily'?'daily':'live'; const drv_format=deriveFormat(rules,timeClass); const tc=parseTimeControl(game.time_control||'');
@@ -71,6 +81,7 @@ function valueMapForGame(game, fields){
   const drv_opp_score = scoreFromOutcome(drv_opp_outcome);
   const drv_my_color = meIsWhite ? 'white' : (meIsBlack ? 'black' : '');
   const drv_opp_color = meIsWhite ? 'black' : (meIsBlack ? 'white' : '');
+  const drv_end_reason = endReasonFromResults(white.result, black.result);
   const map={
     url:game.url||'', pgn:(pgn||'').replace(/\r?\n/g,'\\n'), time_control:game.time_control||'', start_time:game.start_time||'', end_time:game.end_time||'', rated:game.rated===true?'true':(game.rated===false?'false':''),
     'accuracies.white':game.accuracies&&game.accuracies.white!=null?String(game.accuracies.white):'', 'accuracies.black':game.accuracies&&game.accuracies.black!=null?String(game.accuracies.black):'', tcn:game.tcn||'', uuid:game.uuid||'', initial_setup:game.initial_setup||'', fen:game.fen||'', time_class:timeClass, rules:rules,
@@ -83,6 +94,7 @@ function valueMapForGame(game, fields){
     drv_white_score: scoreFromOutcome(drv_result_category_white),
     drv_black_outcome: resultCategory(black.result),
     drv_black_score: scoreFromOutcome(resultCategory(black.result)),
+    drv_end_reason: drv_end_reason,
     drv_my_username: my.username||'',
     drv_my_uuid: my.uuid||'',
     drv_my_rating: my.rating!=null?String(my.rating):'',

@@ -31,6 +31,7 @@
 | drv_white_score | number | Derived white score: 1 for win, 0.5 for draw, 0 for loss. | 1 |
 | drv_black_outcome | string | Derived black outcome: win, lose, or draw (from black.result). | lose |
 | drv_black_score | number | Derived black score: 1 for win, 0.5 for draw, 0 for loss. | 0 |
+| drv_end_reason | string | Derived end reason: if a player shows `win`, the opposing player's result indicates why (e.g., `timeout`, `resigned`); for draws both players share the same reason. | resigned |
 | drv_my_username | string | Derived: my username based on the configured account (matches white/black.username). | ians141 |
 | drv_my_uuid | string (UUID) | Derived: my member unique ID (from the matching PlayerRef). | b7cb10a6-46b2-11ee-a8b5-e19be8c73f68 |
 | drv_my_rating | integer | Derived: my rating at the time of the game. | 2013 |

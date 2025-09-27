@@ -129,6 +129,15 @@ function countMoves(pgnMoves) {
   return matches ? String(matches.length) : '0';
 }
 
+function endReasonFromResults(whiteRes, blackRes) {
+  const w = String(whiteRes||'').toLowerCase();
+  const b = String(blackRes||'').toLowerCase();
+  if (!w && !b) return '';
+  if (w === 'win') return b || '';
+  if (b === 'win') return w || '';
+  return w || b;
+}
+
 async function main() {
   const fieldLines = fs.readFileSync(FIELDS_CSV,'utf8').trim().split(/\n/).slice(1);
   const fields = fieldLines.map(l => l.split(',')[0]);
@@ -252,6 +261,7 @@ async function main() {
     drv_white_score: scoreFromOutcome(drv_result_category_white),
     drv_black_outcome: resultCategory(black.result),
     drv_black_score: scoreFromOutcome(resultCategory(black.result)),
+    drv_end_reason: endReasonFromResults(white.result, black.result),
     drv_my_username: my.username || '',
     drv_my_uuid: my.uuid || '',
     drv_my_rating: my.rating != null ? String(my.rating) : '',

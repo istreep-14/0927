@@ -69,6 +69,7 @@ drv_white_outcome,string,"Derived outcome for white: win/lose/draw",derived,main
 drv_white_score,number,"Derived score for white: 1, 0.5, or 0",derived,main
 drv_black_outcome,string,"Derived outcome for black: win/lose/draw",derived,main
 drv_black_score,number,"Derived score for black: 1, 0.5, or 0",derived,main
+drv_end_reason,string,"Derived: reason game ended (loser's result or draw reason)",derived,main
 drv_my_username,string,"Derived: my username (based on configured user)",derived,main
 drv_my_uuid,string (UUID),"Derived: my member unique ID",derived,meta
 drv_my_rating,integer,"Derived: my rating at time of game",derived,main
