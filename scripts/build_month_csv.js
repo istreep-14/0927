@@ -23,6 +23,20 @@ function extractPgnMoves(pgn) {
   if (!pgn) return ''; const idx = pgn.indexOf('\n\n'); const body = idx >= 0 ? pgn.slice(idx + 2) : pgn; return body.replace(/\r?\n/g, ' ').trim();
 }
 
+function parseSanMovesArray(pgn) {
+  if (!pgn) return [];
+  const idx = pgn.indexOf('\n\n');
+  const body = idx >= 0 ? pgn.slice(idx + 2) : pgn;
+  const cleaned = body.replace(/\{[^}]*\}/g,'').replace(/1-0|0-1|1\/2-1\/2/g,'').trim();
+  const tokens = cleaned.split(/\s+/);
+  const san = [];
+  for (const t of tokens) {
+    if (/^\d+\.*$/.test(t)) continue;
+    san.push(t);
+  }
+  return san;
+}
+
 function toLocalParts(epochSeconds) {
   if (!epochSeconds && epochSeconds !== 0) return null; const d = new Date(epochSeconds * 1000);
   return { d, date: `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`, time: `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`, iso: d.toISOString() };
@@ -64,6 +78,7 @@ function endReasonFromResults(whiteRes, blackRes){
 
 function valueMapForGame(game, fields){
   const pgn=game.pgn||''; const ph=parsePgnHeaders(pgn); const pgnMoves=extractPgnMoves(pgn).replace(/\s+/g,' ').trim();
+  const sanArr = parseSanMovesArray(pgn);
   const timeClass=game.time_class||''; const rules=game.rules||''; const drv_type=timeClass==='daily'?'daily':'live'; const drv_format=deriveFormat(rules,timeClass); const tc=parseTimeControl(game.time_control||'');
   const endParts=toLocalParts(game.end_time); let startDate=null; if(game.start_time) startDate=new Date(game.start_time*1000); else if(ph.UTCDate&&ph.UTCTime) startDate=parseUtcDateTime(ph.UTCDate,ph.UTCTime);
   const drv_end=endParts?`${endParts.date} ${endParts.time}`:''; const drv_end_date=endParts?endParts.date:''; const drv_end_time=endParts?endParts.time:''; const drv_end_iso=endParts?endParts.iso:'';
@@ -95,6 +110,9 @@ function valueMapForGame(game, fields){
     'white.rating':white.rating!=null?String(white.rating):'', 'white.result':white.result||'', 'white.@id':white['@id']||'', 'white.username':white.username||'', 'white.uuid':white.uuid||'',
     'black.rating':black.rating!=null?String(black.rating):'', 'black.result':black.result||'', 'black.@id':black['@id']||'', 'black.username':black.username||'', 'black.uuid':black.uuid||'',
     eco:game.eco||'', tournament:game.tournament||'', match:game.match||'', pgn_event:ph.Event||'', pgn_site:ph.Site||'', pgn_date:ph.Date||'', pgn_round:ph.Round||'', pgn_white:ph.White||'', pgn_black:ph.Black||'', pgn_result:ph.Result||'', pgn_eco_code:ph.ECO||'', pgn_eco_url:ph.ECOUrl||'', pgn_time_control:ph.TimeControl||'', pgn_termination:ph.Termination||'', pgn_start_time:ph.StartTime||'', pgn_end_date:ph.EndDate||'', pgn_end_time:ph.EndTime||'', pgn_link:ph.Link||'', pgn_opening:ph.Opening||'', pgn_variation:ph.Variation||'', pgn_current_position:ph.CurrentPosition||'', pgn_timezone:ph.Timezone||'', pgn_utc_date:ph.UTCDate||'', pgn_utc_time:ph.UTCTime||'', pgn_white_elo:ph.WhiteElo||'', pgn_black_elo:ph.BlackElo||'', pgn_setup:ph.SetUp||'', pgn_fen:ph.FEN||'', pgn_moves:pgnMoves,
+    drv_san_moves: sanArr.length?('\''+JSON.stringify(sanArr)+'\''):'',
+    drv_clock_times_seconds: '',
+    drv_time_spent_seconds: '',
     drv_end, drv_end_iso, drv_start, drv_end_date, drv_end_time, drv_start_date, drv_start_time, drv_duration,
     drv_white_outcome: resultCategory(white.result),
     drv_white_score: scoreFromOutcome(resultCategory(white.result)),

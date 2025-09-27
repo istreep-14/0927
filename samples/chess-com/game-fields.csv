@@ -57,6 +57,9 @@ pgn_black_elo,integer,"PGN header BlackElo",pgn,meta
 pgn_setup,string (0/1),"PGN header SetUp (non-standard initial position)",pgn,meta
 pgn_fen,string (FEN),"PGN header FEN (initial position)",pgn,meta
 pgn_moves,string,"PGN movetext (all moves and comments)",pgn,meta
+drv_san_moves,json-string,"Derived: SAN moves array for full game (single-quoted JSON)",derived,meta
+drv_clock_times_seconds,json-string,"Derived: post-move clock times aligned to SAN (seconds, single-quoted JSON)",derived,meta
+drv_time_spent_seconds,json-string,"Derived: per-move time spent aligned to SAN (seconds, single-quoted JSON)",derived,meta
 drv_end,datetime,"Derived display date from end_time",derived,main
 drv_end_iso,string,"Derived ISO 8601 timestamp from end_time",derived,meta
 drv_start,datetime,"Derived display date from start_time",derived,main

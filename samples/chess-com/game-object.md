@@ -106,3 +106,6 @@
 | pgn_setup | SetUp | string (0/1) | Indicates non-standard initial position. When FEN is provided. | 1 |
 | pgn_fen | FEN | string (FEN) | Initial position FEN. Mirrors JSON `initial_setup` when present. | rnbqkbnr/... |
 | pgn_moves | (moves) | string | The PGN moves body (full movetext). Extract from PGN after headers and blank line. | 1. e4 e5 2. Nf3 Nc6 ... |
+| drv_san_moves | json-string | Derived SAN moves array for the full game, emitted as a single-quoted JSON string to avoid spreadsheet auto-formatting. | ' ["e4","e5",...] ' |
+| drv_clock_times_seconds | json-string | Derived post-move clock times, seconds, aligned to SAN moves, as single-quoted JSON string. | '[120.8,118.7,...]' |
+| drv_time_spent_seconds | json-string | Derived per-move time spent, seconds, aligned to SAN moves, as single-quoted JSON string. | '[0.2,2.3,...]' |

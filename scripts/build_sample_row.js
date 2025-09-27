@@ -39,6 +39,20 @@ function extractPgnMoves(pgn) {
   return body.replace(/\r?\n/g, ' ').trim();
 }
 
+function parseSanMovesArray(pgn) {
+  if (!pgn) return [];
+  const idx = pgn.indexOf('\n\n');
+  const body = idx >= 0 ? pgn.slice(idx + 2) : pgn;
+  const cleaned = body.replace(/\{[^}]*\}/g,'').replace(/1-0|0-1|1\/2-1\/2/g,'').trim();
+  const tokens = cleaned.split(/\s+/);
+  const san = [];
+  for (const t of tokens) {
+    if (/^\d+\.*$/.test(t)) continue;
+    san.push(t);
+  }
+  return san;
+}
+
 function formatDateTimeLocal(epochSeconds) {
   if (!epochSeconds && epochSeconds !== 0) return '';
   const d = new Date(epochSeconds * 1000);
@@ -147,6 +161,7 @@ async function main() {
   const pgn = game.pgn || '';
   const ph = parsePgnHeaders(pgn);
   const pgnMoves = extractPgnMoves(pgn).replace(/\s+/g,' ').trim();
+  const sanArr = parseSanMovesArray(pgn);
 
   // base values
   const timeClass = game.time_class || '';
@@ -242,6 +257,9 @@ async function main() {
     pgn_setup: ph.SetUp || '',
     pgn_fen: ph.FEN || '',
     pgn_moves: pgnMoves,
+    drv_san_moves: sanArr.length?('\''+JSON.stringify(sanArr)+'\''):'',
+    drv_clock_times_seconds: '',
+    drv_time_spent_seconds: '',
     drv_end,
     drv_end_iso: endDate ? new Date(game.end_time * 1000).toISOString() : '',
     drv_start,
