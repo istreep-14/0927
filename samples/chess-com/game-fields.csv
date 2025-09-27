@@ -1,95 +1,93 @@
 name,type,description,origin,scope
-url,string (URL),"Public viewer URL for the game on chess.com",json,main
-pgn,string (PGN),"Full PGN with headers and movetext",json,meta
+game_url,string (URL),"Public viewer URL for the game on chess.com",json,main
+movetext,string,"Full PGN movetext (headers separate)",json,meta
 time_control,string,"PGN-compliant time control (e.g., 600 or 180+2)",json,meta
-start_time,integer (epoch seconds),"UTC timestamp when the game started (Daily Chess only)",json,meta
+start_time,integer (epoch seconds),"UTC timestamp when the game started (Daily only)",json,meta
 end_time,integer (epoch seconds),"UTC timestamp when the game ended",json,meta
 rated,boolean,"Whether the game affected rating",json,main
 accuracies.white,number,"White accuracy percentage (0–100) if available",json,main
 accuracies.black,number,"Black accuracy percentage (0–100) if available",json,main
 tcn,string,"Encoded move sequence (optional)",json,meta
-uuid,string (UUID),"Unique game identifier",json,main
-initial_setup,string (FEN),"Starting position FEN (often standard; non-standard for Chess960)",json,meta
-fen,string (FEN),"Final position FEN",json,meta
+game_uuid,string (UUID),"Unique game identifier",json,main
+start_fen,string (FEN),"Starting position FEN (Chess960 varies)",json,meta
+final_fen,string (FEN),"Final position FEN",json,meta
 time_class,string,"Time category (bullet, blitz, rapid, daily)",json,main
 rules,string,"Game rules/variant (e.g., chess, chess960)",json,main
-drv_type,string,"Derived: 'daily' if time_class is daily, else 'live'",derived,main
-drv_format,string,"Derived: unified format per rules/time_class mapping",derived,main
-drv_base_time,integer (seconds),"Derived: live base time in seconds from time_control",derived,main
-drv_increment_time,integer (seconds),"Derived: live increment per move from time_control",derived,main
-drv_correspondence_time,integer (seconds),"Derived: daily seconds to respond from time_control (1/SECONDS)",derived,main
+type,string,"Derived: 'daily' if time_class is daily; else 'live'",derived,main
+format,string,"Derived: unified format per rules/time_class",derived,main
+tc_base,integer,"Derived: live base time from time_control",derived,main
+tc_inc,integer,"Derived: live increment from time_control",derived,main
+tc_corr,integer,"Derived: daily response seconds from time_control (1/SECONDS)",derived,main
 white.rating,integer,"White rating at time of game",json,main
-white.result,string,"White result code (win/lose/draw reasons)",json,main
+white.result,string,"White result code",json,main
 white.@id,string (URL),"Published Data API player URL for white",json,meta
 white.username,string,"White username (canonical case)",json,main
 white.uuid,string (UUID),"White member unique ID",json,meta
 black.rating,integer,"Black rating at time of game",json,main
-black.result,string,"Black result code (win/lose/draw reasons)",json,main
+black.result,string,"Black result code",json,main
 black.@id,string (URL),"Published Data API player URL for black",json,meta
 black.username,string,"Black username (canonical case)",json,main
 black.uuid,string (UUID),"Black member unique ID",json,meta
-eco,string (URL),"Opening reference URL (if available)",json,meta
-tournament,string (URL),"Published Data API tournament link (optional)",json,meta
-match,string (URL),"Published Data API team match link (optional)",json,meta
-pgn_event,string,"PGN header Event",pgn,main
-pgn_site,string,"PGN header Site",pgn,meta
-pgn_date,string (YYYY.MM.DD),"PGN header Date (local)",pgn,meta
-pgn_round,string,"PGN header Round",pgn,meta
-pgn_white,string,"PGN header White (display name)",pgn,meta
-pgn_black,string,"PGN header Black (display name)",pgn,meta
-pgn_result,string,"PGN header Result (e.g., 1-0, 0-1, 1/2-1/2)",pgn,meta
-pgn_eco_code,string,"PGN header ECO code",pgn,main
-pgn_eco_url,string (URL),"PGN header ECOUrl (opening reference)",pgn,meta
-pgn_time_control,string,"PGN header TimeControl",pgn,meta
-pgn_termination,string,"PGN header Termination (human-readable)",pgn,main
-pgn_start_time,string (HH:MM:SS),"PGN header StartTime (local)",pgn,meta
-pgn_end_date,string (YYYY.MM.DD),"PGN header EndDate (local)",pgn,meta
-pgn_end_time,string (HH:MM:SS),"PGN header EndTime (local)",pgn,meta
-pgn_link,string (URL),"PGN header Link (viewer url)",pgn,meta
-pgn_opening,string,"PGN header Opening (opening name)",pgn,main
-pgn_variation,string,"PGN header Variation (opening variation)",pgn,meta
-pgn_current_position,string (FEN),"PGN header CurrentPosition (snapshot)",pgn,meta
-pgn_timezone,string,"PGN header Timezone label",pgn,meta
-pgn_utc_date,string (YYYY.MM.DD),"PGN header UTCDate",pgn,meta
-pgn_utc_time,string (HH:MM:SS),"PGN header UTCTime",pgn,meta
-pgn_white_elo,integer,"PGN header WhiteElo",pgn,meta
-pgn_black_elo,integer,"PGN header BlackElo",pgn,meta
-pgn_setup,string (0/1),"PGN header SetUp (non-standard initial position)",pgn,meta
-pgn_fen,string (FEN),"PGN header FEN (initial position)",pgn,meta
-pgn_moves,string,"PGN movetext (all moves and comments)",pgn,meta
-drv_san_moves,json-string,"Derived: SAN moves array for full game (single-quoted JSON)",derived,meta
-drv_clock_times_seconds,json-string,"Derived: post-move clock times aligned to SAN (seconds, single-quoted JSON)",derived,meta
-drv_time_spent_seconds,json-string,"Derived: per-move time spent aligned to SAN (seconds, single-quoted JSON)",derived,meta
-drv_end,datetime,"Derived display date from end_time",derived,main
-drv_end_iso,string,"Derived ISO 8601 timestamp from end_time",derived,meta
-drv_start,datetime,"Derived display date from start_time",derived,main
-drv_end_date,date,"Derived local date from end_time",derived,main
-drv_end_time,time (HH:MM:SS),"Derived local time from end_time",derived,main
-drv_start_date,date,"Derived local date from drv_start (JSON start_time or PGN UTC headers)",derived,main
-drv_start_time,time (HH:MM:SS),"Derived local time from drv_start (JSON start_time or PGN UTC headers)",derived,main
-drv_duration,integer (seconds),"Derived duration: end_time - start_time (or estimated)",derived,main
-drv_white_outcome,string,"Derived outcome for white: win/lose/draw",derived,main
-drv_white_score,number,"Derived score for white: 1, 0.5, or 0",derived,main
-drv_black_outcome,string,"Derived outcome for black: win/lose/draw",derived,main
-drv_black_score,number,"Derived score for black: 1, 0.5, or 0",derived,main
-drv_end_reason,string,"Derived: reason game ended (loser's result or draw reason)",derived,main
-drv_my_username,string,"Derived: my username (based on configured user)",derived,main
-drv_my_uuid,string (UUID),"Derived: my member unique ID",derived,meta
-drv_my_rating,integer,"Derived: my rating at time of game",derived,main
-drv_my_result,string,"Derived: my result code",derived,main
-drv_my_at_id,string (URL),"Derived: my Published Data API player URL",derived,meta
-drv_my_outcome,string,"Derived: my outcome win/lose/draw",derived,main
-drv_my_score,number,"Derived: my score 1/0.5/0",derived,main
-drv_opp_username,string,"Derived: opponent username",derived,main
-drv_opp_uuid,string (UUID),"Derived: opponent member unique ID",derived,meta
-drv_opp_rating,integer,"Derived: opponent rating at time of game",derived,main
-drv_opp_result,string,"Derived: opponent result code",derived,main
-drv_opp_at_id,string (URL),"Derived: opponent Published Data API player URL",derived,meta
-drv_opp_outcome,string,"Derived: opponent outcome win/lose/draw",derived,main
-drv_opp_score,number,"Derived: opponent score 1/0.5/0",derived,main
-drv_my_color,string,"Derived: 'white' or 'black' depending on my side",derived,main
-drv_opp_color,string,"Derived: opponent color (opposite of my color)",derived,main
-drv_white_expected_score,number,"Derived: expected score for white (0–1, 4 decimals)",derived,main
-drv_black_expected_score,number,"Derived: expected score for black (0–1, 4 decimals)",derived,main
-drv_my_expected_score,number,"Derived: my expected score (0–1, 4 decimals)",derived,main
-drv_opp_expected_score,number,"Derived: opponent expected score (0–1, 4 decimals)",derived,main
+eco_url,string (URL),"Opening reference URL (if available)",json,meta
+tournament_link,string (URL),"Published Data API tournament link (optional)",json,meta
+match_link,string (URL),"Published Data API team match link (optional)",json,meta
+event,string,"PGN Event header",pgn,main
+site,string,"PGN Site header",pgn,meta
+date,string (YYYY.MM.DD),"PGN Date (local)",pgn,meta
+round,string,"PGN Round",pgn,meta
+hdr_white,string,"PGN White display name",pgn,meta
+hdr_black,string,"PGN Black display name",pgn,meta
+result_code,string,"PGN Result (e.g., 1-0, 0-1, 1/2-1/2)",pgn,meta
+eco_code,string,"PGN ECO code",pgn,main
+hdr_time_control,string,"PGN TimeControl header",pgn,meta
+termination_text,string,"PGN Termination (human-readable)",pgn,main
+hdr_start_time,string (HH:MM:SS),"PGN StartTime (local)",pgn,meta
+hdr_end_date,string (YYYY.MM.DD),"PGN EndDate (local)",pgn,meta
+hdr_end_time,string (HH:MM:SS),"PGN EndTime (local)",pgn,meta
+viewer_link,string (URL),"PGN Link (viewer)",pgn,meta
+opening,string,"PGN Opening name",pgn,main
+variation,string,"PGN Opening variation",pgn,meta
+current_fen,string (FEN),"PGN CurrentPosition snapshot",pgn,meta
+timezone,string,"PGN Timezone label",pgn,meta
+utc_date,string (YYYY.MM.DD),"PGN UTCDate",pgn,meta
+utc_time,string (HH:MM:SS),"PGN UTCTime",pgn,meta
+hdr_white_elo,integer,"PGN WhiteElo",pgn,meta
+hdr_black_elo,integer,"PGN BlackElo",pgn,meta
+hdr_setup,string (0/1),"PGN SetUp",pgn,meta
+hdr_fen,string (FEN),"PGN initial FEN",pgn,meta
+san_moves,json-string,"Derived SAN moves array (single-quoted JSON)",derived,meta
+clock_times,json-string,"Derived post-move clock times aligned to SAN (single-quoted JSON)",derived,meta
+time_spent,json-string,"Derived per-move time spent aligned to SAN (single-quoted JSON)",derived,meta
+end_dt,datetime,"Local end datetime from end_time",derived,main
+end_iso,string,"ISO 8601 end timestamp",derived,meta
+start_dt,datetime,"Local start datetime from start_time or PGN UTC",derived,main
+end_date,date,"Local end date",derived,main
+end_clock,time (HH:MM:SS),"Local end time",derived,main
+start_date,date,"Local start date",derived,main
+start_clock,time (HH:MM:SS),"Local start time",derived,main
+duration,integer,"Duration in seconds (end_time - start_time when available)",derived,main
+white_outcome,string,"White outcome win/lose/draw",derived,main
+white_score,number,"White score 1/0.5/0",derived,main
+black_outcome,string,"Black outcome win/lose/draw",derived,main
+black_score,number,"Black score 1/0.5/0",derived,main
+end_reason,string,"Reason game ended (loser result or draw reason)",derived,main
+my_username,string,"My username (resolved)",derived,main
+my_uuid,string (UUID),"My member unique ID",derived,meta
+my_rating,integer,"My rating at game time",derived,main
+my_result,string,"My result code",derived,main
+my_id,string (URL),"My Published Data API player URL",derived,meta
+my_outcome,string,"My outcome win/lose/draw",derived,main
+my_score,number,"My score 1/0.5/0",derived,main
+opp_username,string,"Opponent username",derived,main
+opp_uuid,string (UUID),"Opponent member unique ID",derived,meta
+opp_rating,integer,"Opponent rating at game time",derived,main
+opp_result,string,"Opponent result code",derived,main
+opp_id,string (URL),"Opponent Published Data API player URL",derived,meta
+opp_outcome,string,"Opponent outcome win/lose/draw",derived,main
+opp_score,number,"Opponent score 1/0.5/0",derived,main
+my_color,string,"My color (white/black)",derived,main
+opp_color,string,"Opponent color",derived,main
+white_expected_score,number,"Expected score for white (0–1, 4 decimals)",derived,main
+black_expected_score,number,"Expected score for black (0–1, 4 decimals)",derived,main
+my_expected_score,number,"My expected score (0–1, 4 decimals)",derived,main
+opp_expected_score,number,"Opponent expected score (0–1, 4 decimals)",derived,main

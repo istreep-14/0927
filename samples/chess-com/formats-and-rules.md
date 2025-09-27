@@ -3,7 +3,7 @@
 | Field | Values | Description |
 |---|---|---|
 | time_class | bullet, blitz, rapid, daily | Chess.com time categories. |
-| drv_type | live, daily | Derived: if `time_class` is `daily` → `daily`, else `live`. |
+| type | live, daily | Derived: if `time_class` is `daily` → `daily`, else `live`. |
 
 ## Rules (variants)
 
@@ -19,13 +19,13 @@
 
 ## Format mapping (ratings perspective)
 
-Rules → drv_format
+Rules → format
 
-- If rules = `chess` → `drv_format = time_class`
+- If rules = `chess` → `format = time_class`
 - If rules = `chess960` →
-  - If time_class = `daily` → `drv_format = daily960`
-  - Else → `drv_format = live960`
-- If rules ∈ { `bughouse`, `crazyhouse`, `kingofthehill`, `threecheck`, `oddschess` } → `drv_format = rules`
+-  - If time_class = `daily` → `format = daily960`
+-  - Else → `format = live960`
+- If rules ∈ { `bughouse`, `crazyhouse`, `kingofthehill`, `threecheck`, `oddschess` } → `format = rules`
 
 Constant list of formats: bullet, blitz, rapid, daily, live960, daily960, bughouse, crazyhouse, kingofthehill, threecheck, oddschess.
 
@@ -35,10 +35,10 @@ Note: `oddschess` games are typically unrated; player rating values do not chang
 
 | Input form | Meaning | Derived fields |
 |---|---|---|
-| BASE | Each side gets BASE seconds. | drv_base_time = BASE; drv_increment_time = 0 |
-| BASE+INC | Base seconds plus increment per move. | drv_base_time = BASE; drv_increment_time = INC |
-| 1/SECONDS | Correspondence (daily) time: SECONDS to respond per move. | drv_correspondence_time = SECONDS |
+| BASE | Each side gets BASE seconds. | tc_base = BASE; tc_inc = 0 |
+| BASE+INC | Base seconds plus increment per move. | tc_base = BASE; tc_inc = INC |
+| 1/SECONDS | Correspondence (daily) time: SECONDS to respond per move. | tc_corr = SECONDS |
 
 Implementation tips:
-- For daily games, prefer `drv_correspondence_time`; for live games, prefer `drv_base_time` and `drv_increment_time`.
+- For daily games, prefer `tc_corr`; for live games, prefer `tc_base` and `tc_inc`.
 - Parse as integers; missing increment defaults to 0.
