@@ -1,7 +1,0 @@
-https://api.chess.com/pub/tournament/early-titled-tuesday-blitz-june-07-2022-3192102
-https://api.chess.com/pub/tournament/early-titled-tuesday-blitz-june-14-2022-3195433
-https://api.chess.com/pub/tournament/early-titled-tuesday-blitz-june-28-2022-3221692
-https://api.chess.com/pub/tournament/late-titled-tuesday-blitz-june-07-2022-3192103
-https://api.chess.com/pub/tournament/late-titled-tuesday-blitz-june-14-2022-3195434
-https://api.chess.com/pub/tournament/rapid-chess-championship-week-17-3178635
-https://api.chess.com/pub/tournament/rapid-chess-championship-week-18-3192104
