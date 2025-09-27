@@ -6,6 +6,7 @@
 | url | string (URL) | Public viewer URL for the game on chess.com. Viewer link, not a Published Data API URL. | https://www.chess.com/game/live/48100136511 |
 | pgn | string (PGN) | Final PGN with headers and moves. Includes headers like Event, Site, Date, TimeControl, ECO, Termination, Link; may include a Tournament link. | [Event "Live Chess"] … |
 | time_control | string | PGN-compliant time control. Either total seconds (e.g., 600) or base+increment (e.g., 180+2, 600+0). | 600 |
+| start_time | integer (epoch seconds) | UTC timestamp when the game started. Daily Chess only; not present for live games. | 1254438881 |
 | end_time | integer (epoch seconds) | UTC timestamp when the game ended. Unix epoch seconds. | 1654360575 |
 | rated | boolean | Whether the game affected rating. | true |
 | accuracies | object | Engine accuracy stats if available. Optional; may be absent. Values are percentages 0–100. | { "white": 96.6, "black": 91.73 } |

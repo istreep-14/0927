@@ -2,6 +2,7 @@ name,type,description,origin,scope
 url,string (URL),"Public viewer URL for the game on chess.com",json,main
 pgn,string (PGN),"Full PGN with headers and movetext",json,meta
 time_control,string,"PGN-compliant time control (e.g., 600 or 180+2)",json,meta
+start_time,integer (epoch seconds),"UTC timestamp when the game started (Daily Chess only)",json,meta
 end_time,integer (epoch seconds),"UTC timestamp when the game ended",json,meta
 rated,boolean,"Whether the game affected rating",json,main
 accuracies.white,number,"White accuracy percentage (0–100) if available",json,main
@@ -53,6 +54,7 @@ pgn_fen,string (FEN),"PGN header FEN (initial position)",pgn,meta
 pgn_moves,string,"PGN movetext (all moves and comments)",pgn,meta
 drv_end,datetime,"Derived display date from end_time",derived,main
 drv_end_iso,string,"Derived ISO 8601 timestamp from end_time",derived,meta
+drv_start,datetime,"Derived display date from start_time",derived,main
 drv_result_category_white,string,"Derived: win/lose/draw for white from white.result",derived,main
 drv_is_variant,boolean,"Derived: rules != 'chess'",derived,main
 drv_winner,string,"Derived: 'white'|'black'|'' for draw",derived,main
