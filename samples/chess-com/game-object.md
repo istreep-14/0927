@@ -48,6 +48,10 @@
 | drv_opp_outcome | string | Derived: opponent outcome win/lose/draw. | lose |
 | drv_opp_score | number | Derived: opponent score 1/0.5/0. | 0 |
 | drv_opp_color | string | Derived: opponent color (opposite of my color). | black |
+| drv_white_expected_score | number | Derived expected score for white using Elo logistic (0–1, 4 decimals). | 0.7315 |
+| drv_black_expected_score | number | Derived expected score for black using Elo logistic (0–1, 4 decimals). | 0.2685 |
+| drv_my_expected_score | number | Derived expected score for my side (0–1, 4 decimals). | 0.7315 |
+| drv_opp_expected_score | number | Derived expected score for opponent (0–1, 4 decimals). | 0.2685 |
 | white | object (PlayerRef) | White player details. See PlayerRef below. | { rating: 2843, result: "win", … } |
 | black | object (PlayerRef) | Black player details. See PlayerRef below. | { rating: 2699, result: "50move", … } |
 | eco | string (URL) | Opening reference URL (if available). Points to chess.com Opening Explorer; optional. | https://www.chess.com/openings/Reti-Opening... |

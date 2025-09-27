@@ -271,6 +271,10 @@ async function main() {
     drv_opp_score,
     drv_my_color,
     drv_opp_color,
+    drv_white_expected_score: (white.rating!=null&&black.rating!=null)?(1/(1+Math.pow(10,(black.rating-white.rating)/400))).toFixed(4):'',
+    drv_black_expected_score: (white.rating!=null&&black.rating!=null)?(1/(1+Math.pow(10,(white.rating-black.rating)/400))).toFixed(4):'',
+    drv_my_expected_score: (meIsWhite? ((white.rating!=null&&black.rating!=null)?(1/(1+Math.pow(10,(black.rating-white.rating)/400))).toFixed(4):'') : meIsBlack? ((white.rating!=null&&black.rating!=null)?(1/(1+Math.pow(10,(white.rating-black.rating)/400))).toFixed(4):'') : ''),
+    drv_opp_expected_score: (meIsWhite? ((white.rating!=null&&black.rating!=null)?(1/(1+Math.pow(10,(white.rating-black.rating)/400))).toFixed(4):'') : meIsBlack? ((white.rating!=null&&black.rating!=null)?(1/(1+Math.pow(10,(black.rating-white.rating)/400))).toFixed(4):'') : ''),
   };
 
   const header = fields.join(',');

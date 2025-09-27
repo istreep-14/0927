@@ -70,6 +70,10 @@ function valueMapForGame(game, fields){
   const drv_start=startDate?`${toLocalParts(startDate.getTime()/1000).date} ${toLocalParts(startDate.getTime()/1000).time}`:''; const sp=startDate?toLocalParts(startDate.getTime()/1000):null; const drv_start_date=sp?sp.date:''; const drv_start_time=sp?sp.time:'';
   const drv_duration=(endParts&&startDate)?String(Math.max(0, Math.floor((endParts.d - startDate)/1000))):'';
   const white=game.white||{}; const black=game.black||{};
+  const wr = typeof white.rating==='number'?white.rating:NaN;
+  const br = typeof black.rating==='number'?black.rating:NaN;
+  const expWhite = (isFinite(wr)&&isFinite(br)) ? (1/(1+Math.pow(10, (br-wr)/400))).toFixed(4) : '';
+  const expBlack = (isFinite(wr)&&isFinite(br)) ? (1/(1+Math.pow(10, (wr-br)/400))).toFixed(4) : '';
 
   const meIsWhite = (white.username || '').toLowerCase() === ME.toLowerCase();
   const meIsBlack = (black.username || '').toLowerCase() === ME.toLowerCase();
@@ -82,6 +86,8 @@ function valueMapForGame(game, fields){
   const drv_my_color = meIsWhite ? 'white' : (meIsBlack ? 'black' : '');
   const drv_opp_color = meIsWhite ? 'black' : (meIsBlack ? 'white' : '');
   const drv_end_reason = endReasonFromResults(white.result, black.result);
+  const myExp = (meIsWhite)?expWhite: (meIsBlack)?expBlack: '';
+  const oppExp = (meIsWhite)?expBlack: (meIsBlack)?expWhite: '';
   const map={
     url:game.url||'', pgn:(pgn||'').replace(/\r?\n/g,'\\n'), time_control:game.time_control||'', start_time:game.start_time||'', end_time:game.end_time||'', rated:game.rated===true?'true':(game.rated===false?'false':''),
     'accuracies.white':game.accuracies&&game.accuracies.white!=null?String(game.accuracies.white):'', 'accuracies.black':game.accuracies&&game.accuracies.black!=null?String(game.accuracies.black):'', tcn:game.tcn||'', uuid:game.uuid||'', initial_setup:game.initial_setup||'', fen:game.fen||'', time_class:timeClass, rules:rules,
@@ -111,6 +117,10 @@ function valueMapForGame(game, fields){
     drv_opp_score,
     drv_my_color,
     drv_opp_color,
+    drv_white_expected_score: expWhite,
+    drv_black_expected_score: expBlack,
+    drv_my_expected_score: myExp,
+    drv_opp_expected_score: oppExp,
   };
   return fields.map(f => csvEscape(map[f]!==undefined?map[f]:''));
 }

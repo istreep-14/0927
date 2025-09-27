@@ -86,6 +86,10 @@ drv_opp_outcome,string,"Derived: opponent outcome win/lose/draw",derived,main
 drv_opp_score,number,"Derived: opponent score 1/0.5/0",derived,main
 drv_my_color,string,"Derived: 'white' or 'black' depending on my side",derived,main
 drv_opp_color,string,"Derived: opponent color (opposite of my color)",derived,main
+drv_white_expected_score,number,"Derived: expected score for white (0–1, 4 decimals)",derived,main
+drv_black_expected_score,number,"Derived: expected score for black (0–1, 4 decimals)",derived,main
+drv_my_expected_score,number,"Derived: my expected score (0–1, 4 decimals)",derived,main
+drv_opp_expected_score,number,"Derived: opponent expected score (0–1, 4 decimals)",derived,main
 drv_result_category_white,string,"Derived: win/lose/draw for white from white.result",derived,main
 drv_is_variant,boolean,"Derived: rules != 'chess'",derived,main
 drv_winner,string,"Derived: 'white'|'black'|'' for draw",derived,main
