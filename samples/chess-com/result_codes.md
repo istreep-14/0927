@@ -24,4 +24,7 @@ Notes
 - Winners usually show `win`; losing side carries the specific reason.
 - `kingofthehill` and `threecheck` appear on the losing side in this table (opponent achieved the win condition).
 - This list follows the Published Data API “Game results codes”.
+- Mapping for derived outcome/score:
+  - outcome: win for `win`; draw for {`draw`,`stalemate`,`agreed`,`repetition`,`insufficient`,`50move`,`timevsinsufficient`}; lose for {`lose`,`checkmated`,`resigned`,`timeout`,`abandoned`,`kingofthehill`,`threecheck`,`bughousepartnerlose`}.
+  - score: 1 for win; 0.5 for draw; 0 for lose.
 

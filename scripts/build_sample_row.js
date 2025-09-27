@@ -107,10 +107,13 @@ function deriveWinner(whiteRes, blackRes) {
 
 function resultCategory(res) {
   if (!res) return '';
-  if (res === 'win') return 'win';
-  if (res === 'lose') return 'lose';
+  const r = String(res).toLowerCase();
+  if (r === 'win') return 'win';
   const draws = new Set(['draw','stalemate','agreed','repetition','insufficient','50move','timevsinsufficient']);
-  return draws.has(res) ? 'draw' : '';
+  if (draws.has(r)) return 'draw';
+  const losses = new Set(['lose','checkmated','resigned','timeout','abandoned','kingofthehill','threecheck','bughousepartnerlose']);
+  if (losses.has(r)) return 'lose';
+  return '';
 }
 
 function scoreFromOutcome(outcome) {

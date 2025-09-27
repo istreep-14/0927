@@ -38,7 +38,16 @@ function parseTimeControl(tc){ const out={base:'',inc:'',corr:''}; if(!tc)return
 
 function deriveWinner(whiteRes, blackRes){ if(whiteRes==='win'||blackRes==='lose')return'white'; if(blackRes==='win'||whiteRes==='lose')return'black'; return ''; }
 
-function resultCategory(res){ if(!res)return''; if(res==='win')return'win'; if(res==='lose')return'lose'; const draws=new Set(['draw','stalemate','agreed','repetition','insufficient','50move','timevsinsufficient']); return draws.has(res)?'draw':''; }
+function resultCategory(res){
+  if(!res) return '';
+  const r = String(res).toLowerCase();
+  if (r === 'win') return 'win';
+  const drawSet = new Set(['draw','stalemate','agreed','repetition','insufficient','50move','timevsinsufficient']);
+  if (drawSet.has(r)) return 'draw';
+  const lossSet = new Set(['lose','checkmated','resigned','timeout','abandoned','kingofthehill','threecheck','bughousepartnerlose']);
+  if (lossSet.has(r)) return 'lose';
+  return '';
+}
 function scoreFromOutcome(outcome){ if(outcome==='win')return'1'; if(outcome==='draw')return'0.5'; if(outcome==='lose')return'0'; return ''; }
 
 function countMoves(pgnMoves){ if(!pgnMoves)return''; const matches=pgnMoves.match(/\b\d+\./g); return matches?String(matches.length):'0'; }
