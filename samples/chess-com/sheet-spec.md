@@ -38,6 +38,18 @@
 | drv_base_time | Derived | number? | Live base seconds parsed from time_control. |
 | drv_increment_time | Derived | number? | Live increment seconds parsed from time_control. |
 | drv_correspondence_time | Derived | number? | Daily response seconds parsed from time_control. |
+| drv_my_username | Derived | string | My username (configured). |
+| drv_my_color | Derived | string | 'white' or 'black'. |
+| drv_my_rating | Derived | number? | My rating at time of game. |
+| drv_my_result | Derived | string | My result code. |
+| drv_my_outcome | Derived | string | My outcome win/lose/draw. |
+| drv_my_score | Derived | number | My score (1/0.5/0). |
+| drv_opp_username | Derived | string | Opponent username. |
+| drv_opp_color | Derived | string | Opponent color. |
+| drv_opp_rating | Derived | number? | Opponent rating at time of game. |
+| drv_opp_result | Derived | string | Opponent result code. |
+| drv_opp_outcome | Derived | string | Opponent outcome win/lose/draw. |
+| drv_opp_score | Derived | number | Opponent score (1/0.5/0). |
 
 Optional derived columns (compute in script):
 - **result_category**: win/lose/draw derived from `white_result`/`black_result` and perspective.

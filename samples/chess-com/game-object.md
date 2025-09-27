@@ -31,6 +31,22 @@
 | drv_white_score | number | Derived white score: 1 for win, 0.5 for draw, 0 for loss. | 1 |
 | drv_black_outcome | string | Derived black outcome: win, lose, or draw (from black.result). | lose |
 | drv_black_score | number | Derived black score: 1 for win, 0.5 for draw, 0 for loss. | 0 |
+| drv_my_username | string | Derived: my username based on the configured account (matches white/black.username). | ians141 |
+| drv_my_uuid | string (UUID) | Derived: my member unique ID (from the matching PlayerRef). | b7cb10a6-46b2-11ee-a8b5-e19be8c73f68 |
+| drv_my_rating | integer | Derived: my rating at the time of the game. | 2013 |
+| drv_my_result | string | Derived: my result code (from the matching PlayerRef). | win |
+| drv_my_at_id | string (URL) | Derived: my Published Data API player URL. | https://api.chess.com/pub/player/ians141 |
+| drv_my_outcome | string | Derived: my outcome win/lose/draw (normalized). | win |
+| drv_my_score | number | Derived: my score 1 (win), 0.5 (draw), or 0 (loss). | 1 |
+| drv_my_color | string | Derived: my color, either white or black, based on which PlayerRef matches my username. | white |
+| drv_opp_username | string | Derived: opponent username (the other PlayerRef). | Cika_Rodjeni |
+| drv_opp_uuid | string (UUID) | Derived: opponent member unique ID. | c31a76d4-8690-11f0-9d69-37fe5abf4fde |
+| drv_opp_rating | integer | Derived: opponent rating at the time of the game. | 1875 |
+| drv_opp_result | string | Derived: opponent result code. | resigned |
+| drv_opp_at_id | string (URL) | Derived: opponent Published Data API player URL. | https://api.chess.com/pub/player/cika_rodjeni |
+| drv_opp_outcome | string | Derived: opponent outcome win/lose/draw. | lose |
+| drv_opp_score | number | Derived: opponent score 1/0.5/0. | 0 |
+| drv_opp_color | string | Derived: opponent color (opposite of my color). | black |
 | white | object (PlayerRef) | White player details. See PlayerRef below. | { rating: 2843, result: "win", … } |
 | black | object (PlayerRef) | Black player details. See PlayerRef below. | { rating: 2699, result: "50move", … } |
 | eco | string (URL) | Opening reference URL (if available). Points to chess.com Opening Explorer; optional. | https://www.chess.com/openings/Reti-Opening... |
