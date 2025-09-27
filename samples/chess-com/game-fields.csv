@@ -20,12 +20,12 @@ tc_inc,integer,"Derived: live increment from time_control",derived,main
 tc_corr,integer,"Derived: daily response seconds from time_control (1/SECONDS)",derived,main
 white.rating,integer,"White rating at time of game",json,main
 white.result,string,"White result code",json,main
-white.@id,string (URL),"Published Data API player URL for white",json,meta
+white.id,string (URL),"Published Data API player URL for white",json,meta
 white.username,string,"White username (canonical case)",json,main
 white.uuid,string (UUID),"White member unique ID",json,meta
 black.rating,integer,"Black rating at time of game",json,main
 black.result,string,"Black result code",json,main
-black.@id,string (URL),"Published Data API player URL for black",json,meta
+black.id,string (URL),"Published Data API player URL for black",json,meta
 black.username,string,"Black username (canonical case)",json,main
 black.uuid,string (UUID),"Black member unique ID",json,meta
 eco_url,string (URL),"Opening reference URL (if available)",json,meta
