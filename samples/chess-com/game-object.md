@@ -21,6 +21,12 @@
 | drv_base_time | integer (seconds) | Derived from `time_control` for live games: base seconds (BASE). | 600 |
 | drv_increment_time | integer (seconds) | Derived from `time_control` for live games: increment per move (INC), 0 if missing. | 2 |
 | drv_correspondence_time | integer (seconds) | Derived from `time_control` for daily games: seconds to respond per move. | 86400 |
+| drv_end_date | date | Derived display date from `end_time` (local date). | 2022-06-04 |
+| drv_end_time | time (HH:MM:SS) | Derived display time from `end_time` (local time). | 16:36:15 |
+| drv_start | datetime | Derived start datetime: use JSON `start_time` if present; otherwise combine PGN `UTCDate` + `UTCTime` and localize. | 2022-06-04T16:21:02 |
+| drv_start_date | date | Derived display date from `drv_start` (local date). | 2022-06-04 |
+| drv_start_time | time (HH:MM:SS) | Derived display time from `drv_start` (local time). | 16:21:02 |
+| drv_duration | integer (seconds) | Derived game duration in seconds: `end_time - start_time` when available; else estimate from PGN times if needed. | 915 |
 | white | object (PlayerRef) | White player details. See PlayerRef below. | { rating: 2843, result: "win", … } |
 | black | object (PlayerRef) | Black player details. See PlayerRef below. | { rating: 2699, result: "50move", … } |
 | eco | string (URL) | Opening reference URL (if available). Points to chess.com Opening Explorer; optional. | https://www.chess.com/openings/Reti-Opening... |

@@ -60,6 +60,11 @@ pgn_moves,string,"PGN movetext (all moves and comments)",pgn,meta
 drv_end,datetime,"Derived display date from end_time",derived,main
 drv_end_iso,string,"Derived ISO 8601 timestamp from end_time",derived,meta
 drv_start,datetime,"Derived display date from start_time",derived,main
+drv_end_date,date,"Derived local date from end_time",derived,main
+drv_end_time,time (HH:MM:SS),"Derived local time from end_time",derived,main
+drv_start_date,date,"Derived local date from drv_start (JSON start_time or PGN UTC headers)",derived,main
+drv_start_time,time (HH:MM:SS),"Derived local time from drv_start (JSON start_time or PGN UTC headers)",derived,main
+drv_duration,integer (seconds),"Derived duration: end_time - start_time (or estimated)",derived,main
 drv_result_category_white,string,"Derived: win/lose/draw for white from white.result",derived,main
 drv_is_variant,boolean,"Derived: rules != 'chess'",derived,main
 drv_winner,string,"Derived: 'white'|'black'|'' for draw",derived,main

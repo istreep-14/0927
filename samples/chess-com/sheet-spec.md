@@ -12,6 +12,9 @@
 | uuid | JSON | string | Primary key. |
 | url | JSON | string | Viewer URL. |
 | end_time | JSON | datetime | Convert from epoch seconds. |
+| drv_end | Derived | datetime | Local display datetime from `end_time`. |
+| drv_end_date | Derived | date | Local date from `end_time`. |
+| drv_end_time | Derived | time | Local time from `end_time`. |
 | time_class | JSON | string | bullet, blitz, rapid, daily. |
 | rules | JSON | string | chess, chess960, etc. |
 | drv_type | Derived | string | daily or live from time_class. |
@@ -28,6 +31,10 @@
 | is_rated | JSON | boolean | `game.rated`. |
 | accuracy_white | JSON | number? | `accuracies.white` if available. |
 | accuracy_black | JSON | number? | `accuracies.black` if available. |
+| drv_start | Derived | datetime? | Use JSON `start_time` if present; else PGN `UTCDate`+`UTCTime` localized. |
+| drv_start_date | Derived | date? | Local date from `drv_start`. |
+| drv_start_time | Derived | time? | Local time from `drv_start`. |
+| drv_duration | Derived | number? | `end_time - start_time` (seconds) when both available. |
 | drv_base_time | Derived | number? | Live base seconds parsed from time_control. |
 | drv_increment_time | Derived | number? | Live increment seconds parsed from time_control. |
 | drv_correspondence_time | Derived | number? | Daily response seconds parsed from time_control. |
