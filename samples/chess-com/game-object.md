@@ -40,11 +40,4 @@
 - **time_class**: bullet, blitz, rapid, daily
 - **rules**: chess, chess960
 - **result (PlayerRef.result)**:
-  - win, lose, draw
-  - checkmated, resigned, timeout, stalemate
-  - agreed, repetition, insufficient, 50move, abandoned
-  - timevsinsufficient
-  - kingofthehill, threecheck
-  - noresult, cheat
-  - bughousepartnerlose
-
+'samples/chess-com/result_codes.md'
