@@ -4,6 +4,7 @@ const https = require('https');
 const FIELDS_CSV = '/workspace/samples/chess-com/game-fields.csv';
 const OUT_CSV = '/workspace/samples/chess-com/sample_row_ians141_2025-09.csv';
 const URL = 'https://api.chess.com/pub/player/ians141/games/2025/09';
+const ME = 'ians141';
 
 function fetch(url) {
   return new Promise((resolve, reject) => {
@@ -161,6 +162,18 @@ async function main() {
   const drv_is_variant = rules && rules !== 'chess' ? '1' : '0';
   const drv_moves_count = countMoves(pgnMoves);
 
+  // my/opp mapping based on configured username
+  const meIsWhite = (white.username || '').toLowerCase() === ME.toLowerCase();
+  const meIsBlack = (black.username || '').toLowerCase() === ME.toLowerCase();
+  const my = meIsWhite ? white : (meIsBlack ? black : {});
+  const opp = meIsWhite ? black : (meIsBlack ? white : {});
+  const drv_my_outcome = resultCategory(my.result);
+  const drv_my_score = scoreFromOutcome(drv_my_outcome);
+  const drv_opp_outcome = resultCategory(opp.result);
+  const drv_opp_score = scoreFromOutcome(drv_opp_outcome);
+  const drv_my_color = meIsWhite ? 'white' : (meIsBlack ? 'black' : '');
+  const drv_opp_color = meIsWhite ? 'black' : (meIsBlack ? 'white' : '');
+
   const valueByField = {
     url: game.url || '',
     pgn: (pgn || '').replace(/\r?\n/g, '\\n'),
@@ -236,6 +249,22 @@ async function main() {
     drv_white_score: scoreFromOutcome(drv_result_category_white),
     drv_black_outcome: resultCategory(black.result),
     drv_black_score: scoreFromOutcome(resultCategory(black.result)),
+    drv_my_username: my.username || '',
+    drv_my_uuid: my.uuid || '',
+    drv_my_rating: my.rating != null ? String(my.rating) : '',
+    drv_my_result: my.result || '',
+    drv_my_at_id: my['@id'] || '',
+    drv_my_outcome,
+    drv_my_score,
+    drv_opp_username: opp.username || '',
+    drv_opp_uuid: opp.uuid || '',
+    drv_opp_rating: opp.rating != null ? String(opp.rating) : '',
+    drv_opp_result: opp.result || '',
+    drv_opp_at_id: opp['@id'] || '',
+    drv_opp_outcome,
+    drv_opp_score,
+    drv_my_color,
+    drv_opp_color,
   };
 
   const header = fields.join(',');

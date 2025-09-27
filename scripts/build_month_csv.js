@@ -51,6 +51,17 @@ function valueMapForGame(game, fields){
   const drv_start=startDate?`${toLocalParts(startDate.getTime()/1000).date} ${toLocalParts(startDate.getTime()/1000).time}`:''; const sp=startDate?toLocalParts(startDate.getTime()/1000):null; const drv_start_date=sp?sp.date:''; const drv_start_time=sp?sp.time:'';
   const drv_duration=(endParts&&startDate)?String(Math.max(0, Math.floor((endParts.d - startDate)/1000))):'';
   const white=game.white||{}; const black=game.black||{}; const drv_winner=deriveWinner(white.result, black.result); const drv_result_category_white=resultCategory(white.result); const drv_is_variant=rules&&rules!=='chess'?'1':'0'; const drv_moves_count=countMoves(pgnMoves);
+
+  const meIsWhite = (white.username || '').toLowerCase() === ME.toLowerCase();
+  const meIsBlack = (black.username || '').toLowerCase() === ME.toLowerCase();
+  const my = meIsWhite ? white : meIsBlack ? black : {};
+  const opp = meIsWhite ? black : meIsBlack ? white : {};
+  const drv_my_outcome = resultCategory(my.result);
+  const drv_my_score = scoreFromOutcome(drv_my_outcome);
+  const drv_opp_outcome = resultCategory(opp.result);
+  const drv_opp_score = scoreFromOutcome(drv_opp_outcome);
+  const drv_my_color = meIsWhite ? 'white' : (meIsBlack ? 'black' : '');
+  const drv_opp_color = meIsWhite ? 'black' : (meIsBlack ? 'white' : '');
   const map={
     url:game.url||'', pgn:(pgn||'').replace(/\r?\n/g,'\\n'), time_control:game.time_control||'', start_time:game.start_time||'', end_time:game.end_time||'', rated:game.rated===true?'true':(game.rated===false?'false':''),
     'accuracies.white':game.accuracies&&game.accuracies.white!=null?String(game.accuracies.white):'', 'accuracies.black':game.accuracies&&game.accuracies.black!=null?String(game.accuracies.black):'', tcn:game.tcn||'', uuid:game.uuid||'', initial_setup:game.initial_setup||'', fen:game.fen||'', time_class:timeClass, rules:rules,
@@ -63,6 +74,22 @@ function valueMapForGame(game, fields){
     drv_white_score: scoreFromOutcome(drv_result_category_white),
     drv_black_outcome: resultCategory(black.result),
     drv_black_score: scoreFromOutcome(resultCategory(black.result)),
+    drv_my_username: my.username||'',
+    drv_my_uuid: my.uuid||'',
+    drv_my_rating: my.rating!=null?String(my.rating):'',
+    drv_my_result: my.result||'',
+    drv_my_at_id: my['@id']||'',
+    drv_my_outcome,
+    drv_my_score,
+    drv_opp_username: opp.username||'',
+    drv_opp_uuid: opp.uuid||'',
+    drv_opp_rating: opp.rating!=null?String(opp.rating):'',
+    drv_opp_result: opp.result||'',
+    drv_opp_at_id: opp['@id']||'',
+    drv_opp_outcome,
+    drv_opp_score,
+    drv_my_color,
+    drv_opp_color,
   };
   return fields.map(f => csvEscape(map[f]!==undefined?map[f]:''));
 }
