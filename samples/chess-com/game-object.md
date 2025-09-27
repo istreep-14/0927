@@ -80,3 +80,4 @@
 | pgn_black_elo | BlackElo | integer | Black rating | 2609 | - |
 | pgn_setup | SetUp | string (0/1) | Indicates non-standard initial position | 1 | When FEN is provided. |
 | pgn_fen | FEN | string (FEN) | Initial position FEN | rnbqkbnr/... | Mirrors JSON `initial_setup` when present. |
+| pgn_moves | (moves) | string | The PGN moves body (full movetext) | 1. e4 e5 2. Nf3 Nc6 ... | Extract from PGN after headers and blank line. |
