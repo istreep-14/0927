@@ -36,18 +36,6 @@
 | white | number | White’s accuracy percentage | 96.6 | - | 0–100; optional overall field. |
 | black | number | Black’s accuracy percentage | 91.73 | - | 0–100; optional overall field. |
 
-### Constant lists
-- **time_class**: bullet, blitz, rapid, daily
-- **rules**: chess, chess960
-- **result (PlayerRef.result)**:
-  - win, lose, draw
-  - checkmated, resigned, timeout, stalemate
-  - agreed, repetition, insufficient, 50move, abandoned
-  - timevsinsufficient
-  - kingofthehill, threecheck
-  - noresult, cheat
-  - bughousepartnerlose
-
 ### Field naming convention
 - Keep API JSON field names as-is (e.g., `time_class`, `end_time`).
 - For values derived from PGN headers, use canonical snake_case keys prefixed with `pgn_` (e.g., `pgn_event`, `pgn_white_elo`).
