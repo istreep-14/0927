@@ -14,6 +14,8 @@
 | end_time | JSON | datetime | Convert from epoch seconds. |
 | time_class | JSON | string | bullet, blitz, rapid, daily. |
 | rules | JSON | string | chess, chess960, etc. |
+| drv_type | Derived | string | daily or live from time_class. |
+| drv_format | Derived | string | Unified format (bullet, blitz, rapid, daily, live960, daily960, bughouse, crazyhouse, kingofthehill, threecheck, oddschess). |
 | white_username | JSON | string | `game.white.username`. |
 | black_username | JSON | string | `game.black.username`. |
 | white_rating | JSON | number | `game.white.rating`. |
@@ -26,6 +28,9 @@
 | is_rated | JSON | boolean | `game.rated`. |
 | accuracy_white | JSON | number? | `accuracies.white` if available. |
 | accuracy_black | JSON | number? | `accuracies.black` if available. |
+| drv_base_time | Derived | number? | Live base seconds parsed from time_control. |
+| drv_increment_time | Derived | number? | Live increment seconds parsed from time_control. |
+| drv_correspondence_time | Derived | number? | Daily response seconds parsed from time_control. |
 
 Optional derived columns (compute in script):
 - **result_category**: win/lose/draw derived from `white_result`/`black_result` and perspective.

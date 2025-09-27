@@ -13,6 +13,11 @@ initial_setup,string (FEN),"Starting position FEN (often standard; non-standard 
 fen,string (FEN),"Final position FEN",json,meta
 time_class,string,"Time category (bullet, blitz, rapid, daily)",json,main
 rules,string,"Game rules/variant (e.g., chess, chess960)",json,main
+drv_type,string,"Derived: 'daily' if time_class is daily, else 'live'",derived,main
+drv_format,string,"Derived: unified format per rules/time_class mapping",derived,main
+drv_base_time,integer (seconds),"Derived: live base time in seconds from time_control",derived,main
+drv_increment_time,integer (seconds),"Derived: live increment per move from time_control",derived,main
+drv_correspondence_time,integer (seconds),"Derived: daily seconds to respond from time_control (1/SECONDS)",derived,main
 white.rating,integer,"White rating at time of game",json,main
 white.result,string,"White result code (win/lose/draw reasons)",json,main
 white.@id,string (URL),"Published Data API player URL for white",json,meta

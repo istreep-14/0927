@@ -16,6 +16,11 @@
 | fen | string (FEN) | Final position FEN. Ending position of the game. | 6Q1/5B2/5ppk/1K2b2p/3qP3/7P/2q3P1/1r6 w - - |
 | time_class | string | Time category of the game. Derived from time control; daily = correspondence. | rapid |
 | rules | string | Game rules/variant. Most archives are chess or chess960. | chess |
+| drv_type | string | Derived game type: `daily` if `time_class` is `daily`, else `live`. | live |
+| drv_format | string | Derived format combining `rules` and `time_class` per mapping: chess→time_class; chess960→daily960/live960; other variants→their rule name. | live960 |
+| drv_base_time | integer (seconds) | Derived from `time_control` for live games: base seconds (BASE). | 600 |
+| drv_increment_time | integer (seconds) | Derived from `time_control` for live games: increment per move (INC), 0 if missing. | 2 |
+| drv_correspondence_time | integer (seconds) | Derived from `time_control` for daily games: seconds to respond per move. | 86400 |
 | white | object (PlayerRef) | White player details. See PlayerRef below. | { rating: 2843, result: "win", … } |
 | black | object (PlayerRef) | Black player details. See PlayerRef below. | { rating: 2699, result: "50move", … } |
 | eco | string (URL) | Opening reference URL (if available). Points to chess.com Opening Explorer; optional. | https://www.chess.com/openings/Reti-Opening... |
