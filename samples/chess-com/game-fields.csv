@@ -1,6 +1,54 @@
 name,type,description,origin,scope
-movetext,string,"Full PGN movetext (headers separate)",pgn,main
-eco_code,string,"PGN ECO code",pgn,main
-start_dt,datetime,"Local start datetime from start_time or PGN UTC",derived,main
-end_dt,datetime,"Local end datetime from end_time",derived,main
-duration,integer,"Duration in seconds (end_time - start_time when available)",derived,main
+game_uuid,string (UUID),"Unique game identifier (primary key; hide in sheet)",json,main
+url,string (URL),"Public game viewer URL",json,main
+end_dt,datetime,"Local end datetime (from end_time)",derived,main
+format,string,"Unified format per rules/time_class mapping",derived,main
+my_color,string,"My color (white/black)",derived,main
+my_rating,integer,"My rating at game time",derived,main
+opp_username,string,"Opponent username",derived,main
+opp_rating,integer,"Opponent rating at game time",derived,main
+my_outcome,string,"My outcome win/lose/draw",derived,main
+end_reason,string,"Reason game ended (loser result or draw reason)",derived,main
+
+# Secondary (Games_Meta) — computed/stored but not in main sheet
+movetext,string,"Full PGN movetext (headers separate)",pgn,meta
+eco_code,string,"PGN ECO code",pgn,meta
+eco_url,string (URL),"Opening reference URL from JSON (if available)",json,meta
+start_dt,datetime,"Local start datetime (from start_time or PGN UTC)",derived,meta
+duration,integer,"Duration seconds (end_time - start_time when available)",derived,meta
+rated,boolean,"Whether the game affected rating",json,meta
+time_class,string,"Time category (bullet, blitz, rapid, daily)",json,meta
+rules,string,"Game rules/variant (e.g., chess, chess960)",json,meta
+type,string,"Derived type: daily if time_class is daily; else live",derived,meta
+url_numeric_id,string,"Numeric id parsed from end of url (meta only)",derived,meta
+utc_date,string (YYYY.MM.DD),"PGN UTCDate (emitted)",pgn,meta
+utc_time,string (HH:MM:SS),"PGN UTCTime (emitted)",pgn,meta
+viewer_link,string (URL),"PGN Link (viewer)",pgn,meta
+tournament_link,string (URL),"Published Data API tournament link (optional)",json,meta
+match_link,string (URL),"Published Data API team match link (optional)",json,meta
+white.rating,integer,"White rating at time of game",json,meta
+white.result,string,"White result code",json,meta
+white.id,string (URL),"Published Data API player URL for white",json,meta
+white.username,string,"White username",json,meta
+white.uuid,string (UUID),"White member unique ID",json,meta
+black.rating,integer,"Black rating at time of game",json,meta
+black.result,string,"Black result code",json,meta
+black.id,string (URL),"Published Data API player URL for black",json,meta
+black.username,string,"Black username",json,meta
+black.uuid,string (UUID),"Black member unique ID",json,meta
+my_username,string,"My username (resolved)",derived,meta
+my_uuid,string (UUID),"My member unique ID",derived,meta
+my_result,string,"My result code",derived,meta
+my_id,string (URL),"My Published Data API player URL",derived,meta
+my_expected_score,number,"My expected score (0–1, 4 decimals)",derived,meta
+opp_uuid,string (UUID),"Opponent member unique ID",derived,meta
+opp_result,string,"Opponent result code",derived,meta
+opp_id,string (URL),"Opponent Published Data API player URL",derived,meta
+opp_expected_score,number,"Opponent expected score (0–1, 4 decimals)",derived,meta
+my_color,string,"My color (duplicate for meta joins)",derived,meta
+opp_color,string,"Opponent color",derived,meta
+accuracies.white,number,"White accuracy percentage (0–100)",json,meta
+accuracies.black,number,"Black accuracy percentage (0–100)",json,meta
+san_moves,json-string,"SAN moves array (single-quoted JSON)",derived,meta
+clock_times,json-string,"Post-move clock times aligned to SAN (single-quoted JSON)",derived,meta
+time_spent,json-string,"Per-move time spent aligned to SAN (single-quoted JSON)",derived,meta
