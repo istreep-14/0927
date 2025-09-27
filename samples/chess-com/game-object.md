@@ -40,4 +40,4 @@
 - **time_class**: bullet, blitz, rapid, daily
 - **rules**: chess, chess960
 - **result (PlayerRef.result)**:
-'samples/chess-com/result_codes.md'
+`samples/chess-com/result_codes.md`
