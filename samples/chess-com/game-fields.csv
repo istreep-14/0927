@@ -69,6 +69,20 @@ drv_white_outcome,string,"Derived outcome for white: win/lose/draw",derived,main
 drv_white_score,number,"Derived score for white: 1, 0.5, or 0",derived,main
 drv_black_outcome,string,"Derived outcome for black: win/lose/draw",derived,main
 drv_black_score,number,"Derived score for black: 1, 0.5, or 0",derived,main
+drv_my_username,string,"Derived: my username (based on configured user)",derived,main
+drv_my_uuid,string (UUID),"Derived: my member unique ID",derived,meta
+drv_my_rating,integer,"Derived: my rating at time of game",derived,main
+drv_my_result,string,"Derived: my result code",derived,main
+drv_my_at_id,string (URL),"Derived: my Published Data API player URL",derived,meta
+drv_my_outcome,string,"Derived: my outcome win/lose/draw",derived,main
+drv_my_score,number,"Derived: my score 1/0.5/0",derived,main
+drv_opp_username,string,"Derived: opponent username",derived,main
+drv_opp_uuid,string (UUID),"Derived: opponent member unique ID",derived,meta
+drv_opp_rating,integer,"Derived: opponent rating at time of game",derived,main
+drv_opp_result,string,"Derived: opponent result code",derived,main
+drv_opp_at_id,string (URL),"Derived: opponent Published Data API player URL",derived,meta
+drv_opp_outcome,string,"Derived: opponent outcome win/lose/draw",derived,main
+drv_opp_score,number,"Derived: opponent score 1/0.5/0",derived,main
 drv_result_category_white,string,"Derived: win/lose/draw for white from white.result",derived,main
 drv_is_variant,boolean,"Derived: rules != 'chess'",derived,main
 drv_winner,string,"Derived: 'white'|'black'|'' for draw",derived,main

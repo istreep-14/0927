@@ -67,6 +67,8 @@ function valueMapForGame(game, fields){
   return fields.map(f => csvEscape(map[f]!==undefined?map[f]:''));
 }
 
+const ME = 'ians141';
+
 async function buildMonth(username, y, m, outPath){
   const headerFields=fs.readFileSync(FIELDS_CSV,'utf8').trim().split(/\n/).slice(1).map(l=>l.split(',')[0]);
   const url=`https://api.chess.com/pub/player/${username}/games/${y}/${String(m).padStart(2,'0')}`;
