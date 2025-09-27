@@ -1,53 +1,53 @@
 name,type,description
-url,string (URL),Public viewer URL for the game on chess.com
-pgn,string (PGN),Full PGN with headers and movetext
-time_control,string,PGN-compliant time control (e.g., 600 or 180+2)
-end_time,integer (epoch seconds),UTC timestamp when the game ended
-rated,boolean,Whether the game affected rating
-accuracies.white,number,White accuracy percentage (0–100) if available
-accuracies.black,number,Black accuracy percentage (0–100) if available
-tcn,string,Encoded move sequence (optional)
-uuid,string (UUID),Unique game identifier
-initial_setup,string (FEN),Starting position FEN (often standard; non-standard for Chess960)
-fen,string (FEN),Final position FEN
-time_class,string,Time category (bullet, blitz, rapid, daily)
-rules,string,Game rules/variant (e.g., chess, chess960)
-white.rating,integer,White rating at time of game
-white.result,string,White result code (win/lose/draw reasons)
-white.@id,string (URL),Published Data API player URL for white
-white.username,string,White username (canonical case)
-white.uuid,string (UUID),White member unique ID
-black.rating,integer,Black rating at time of game
-black.result,string,Black result code (win/lose/draw reasons)
-black.@id,string (URL),Published Data API player URL for black
-black.username,string,Black username (canonical case)
-black.uuid,string (UUID),Black member unique ID
-eco,string (URL),Opening reference URL (if available)
-tournament,string (URL),Published Data API tournament link (optional)
-match,string (URL),Published Data API team match link (optional)
-pgn_event,string,PGN header Event
-pgn_site,string,PGN header Site
-pgn_date,string (YYYY.MM.DD),PGN header Date (local)
-pgn_round,string,PGN header Round
-pgn_white,string,PGN header White (display name)
-pgn_black,string,PGN header Black (display name)
-pgn_result,string,PGN header Result (e.g., 1-0, 0-1, 1/2-1/2)
-pgn_eco_code,string,PGN header ECO code
-pgn_eco_url,string (URL),PGN header ECOUrl (opening reference)
-pgn_time_control,string,PGN header TimeControl
-pgn_termination,string,PGN header Termination (human-readable)
-pgn_start_time,string (HH:MM:SS),PGN header StartTime (local)
-pgn_end_date,string (YYYY.MM.DD),PGN header EndDate (local)
-pgn_end_time,string (HH:MM:SS),PGN header EndTime (local)
-pgn_link,string (URL),PGN header Link (viewer url)
-pgn_opening,string,PGN header Opening (opening name)
-pgn_variation,string,PGN header Variation (opening variation)
-pgn_current_position,string (FEN),PGN header CurrentPosition (snapshot)
-pgn_timezone,string,PGN header Timezone label
-pgn_utc_date,string (YYYY.MM.DD),PGN header UTCDate
-pgn_utc_time,string (HH:MM:SS),PGN header UTCTime
-pgn_white_elo,integer,PGN header WhiteElo
-pgn_black_elo,integer,PGN header BlackElo
-pgn_setup,string (0/1),PGN header SetUp (non-standard initial position)
-pgn_fen,string (FEN),PGN header FEN (initial position)
-pgn_moves,string,PGN movetext (all moves and comments)
+url,string (URL),"Public viewer URL for the game on chess.com"
+pgn,string (PGN),"Full PGN with headers and movetext"
+time_control,string,"PGN-compliant time control (e.g., 600 or 180+2)"
+end_time,integer (epoch seconds),"UTC timestamp when the game ended"
+rated,boolean,"Whether the game affected rating"
+accuracies.white,number,"White accuracy percentage (0–100) if available"
+accuracies.black,number,"Black accuracy percentage (0–100) if available"
+tcn,string,"Encoded move sequence (optional)"
+uuid,string (UUID),"Unique game identifier"
+initial_setup,string (FEN),"Starting position FEN (often standard; non-standard for Chess960)"
+fen,string (FEN),"Final position FEN"
+time_class,string,"Time category (bullet, blitz, rapid, daily)"
+rules,string,"Game rules/variant (e.g., chess, chess960)"
+white.rating,integer,"White rating at time of game"
+white.result,string,"White result code (win/lose/draw reasons)"
+white.@id,string (URL),"Published Data API player URL for white"
+white.username,string,"White username (canonical case)"
+white.uuid,string (UUID),"White member unique ID"
+black.rating,integer,"Black rating at time of game"
+black.result,string,"Black result code (win/lose/draw reasons)"
+black.@id,string (URL),"Published Data API player URL for black"
+black.username,string,"Black username (canonical case)"
+black.uuid,string (UUID),"Black member unique ID"
+eco,string (URL),"Opening reference URL (if available)"
+tournament,string (URL),"Published Data API tournament link (optional)"
+match,string (URL),"Published Data API team match link (optional)"
+pgn_event,string,"PGN header Event"
+pgn_site,string,"PGN header Site"
+pgn_date,string (YYYY.MM.DD),"PGN header Date (local)"
+pgn_round,string,"PGN header Round"
+pgn_white,string,"PGN header White (display name)"
+pgn_black,string,"PGN header Black (display name)"
+pgn_result,string,"PGN header Result (e.g., 1-0, 0-1, 1/2-1/2)"
+pgn_eco_code,string,"PGN header ECO code"
+pgn_eco_url,string (URL),"PGN header ECOUrl (opening reference)"
+pgn_time_control,string,"PGN header TimeControl"
+pgn_termination,string,"PGN header Termination (human-readable)"
+pgn_start_time,string (HH:MM:SS),"PGN header StartTime (local)"
+pgn_end_date,string (YYYY.MM.DD),"PGN header EndDate (local)"
+pgn_end_time,string (HH:MM:SS),"PGN header EndTime (local)"
+pgn_link,string (URL),"PGN header Link (viewer url)"
+pgn_opening,string,"PGN header Opening (opening name)"
+pgn_variation,string,"PGN header Variation (opening variation)"
+pgn_current_position,string (FEN),"PGN header CurrentPosition (snapshot)"
+pgn_timezone,string,"PGN header Timezone label"
+pgn_utc_date,string (YYYY.MM.DD),"PGN header UTCDate"
+pgn_utc_time,string (HH:MM:SS),"PGN header UTCTime"
+pgn_white_elo,integer,"PGN header WhiteElo"
+pgn_black_elo,integer,"PGN header BlackElo"
+pgn_setup,string (0/1),"PGN header SetUp (non-standard initial position)"
+pgn_fen,string (FEN),"PGN header FEN (initial position)"
+pgn_moves,string,"PGN movetext (all moves and comments)"
