@@ -65,6 +65,10 @@ drv_end_time,time (HH:MM:SS),"Derived local time from end_time",derived,main
 drv_start_date,date,"Derived local date from drv_start (JSON start_time or PGN UTC headers)",derived,main
 drv_start_time,time (HH:MM:SS),"Derived local time from drv_start (JSON start_time or PGN UTC headers)",derived,main
 drv_duration,integer (seconds),"Derived duration: end_time - start_time (or estimated)",derived,main
+drv_white_outcome,string,"Derived outcome for white: win/lose/draw",derived,main
+drv_white_score,number,"Derived score for white: 1, 0.5, or 0",derived,main
+drv_black_outcome,string,"Derived outcome for black: win/lose/draw",derived,main
+drv_black_score,number,"Derived score for black: 1, 0.5, or 0",derived,main
 drv_result_category_white,string,"Derived: win/lose/draw for white from white.result",derived,main
 drv_is_variant,boolean,"Derived: rules != 'chess'",derived,main
 drv_winner,string,"Derived: 'white'|'black'|'' for draw",derived,main

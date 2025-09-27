@@ -39,6 +39,7 @@ function parseTimeControl(tc){ const out={base:'',inc:'',corr:''}; if(!tc)return
 function deriveWinner(whiteRes, blackRes){ if(whiteRes==='win'||blackRes==='lose')return'white'; if(blackRes==='win'||whiteRes==='lose')return'black'; return ''; }
 
 function resultCategory(res){ if(!res)return''; if(res==='win')return'win'; if(res==='lose')return'lose'; const draws=new Set(['draw','stalemate','agreed','repetition','insufficient','50move','timevsinsufficient']); return draws.has(res)?'draw':''; }
+function scoreFromOutcome(outcome){ if(outcome==='win')return'1'; if(outcome==='draw')return'0.5'; if(outcome==='lose')return'0'; return ''; }
 
 function countMoves(pgnMoves){ if(!pgnMoves)return''; const matches=pgnMoves.match(/\b\d+\./g); return matches?String(matches.length):'0'; }
 
@@ -58,6 +59,10 @@ function valueMapForGame(game, fields){
     'black.rating':black.rating!=null?String(black.rating):'', 'black.result':black.result||'', 'black.@id':black['@id']||'', 'black.username':black.username||'', 'black.uuid':black.uuid||'',
     eco:game.eco||'', tournament:game.tournament||'', match:game.match||'', pgn_event:ph.Event||'', pgn_site:ph.Site||'', pgn_date:ph.Date||'', pgn_round:ph.Round||'', pgn_white:ph.White||'', pgn_black:ph.Black||'', pgn_result:ph.Result||'', pgn_eco_code:ph.ECO||'', pgn_eco_url:ph.ECOUrl||'', pgn_time_control:ph.TimeControl||'', pgn_termination:ph.Termination||'', pgn_start_time:ph.StartTime||'', pgn_end_date:ph.EndDate||'', pgn_end_time:ph.EndTime||'', pgn_link:ph.Link||'', pgn_opening:ph.Opening||'', pgn_variation:ph.Variation||'', pgn_current_position:ph.CurrentPosition||'', pgn_timezone:ph.Timezone||'', pgn_utc_date:ph.UTCDate||'', pgn_utc_time:ph.UTCTime||'', pgn_white_elo:ph.WhiteElo||'', pgn_black_elo:ph.BlackElo||'', pgn_setup:ph.SetUp||'', pgn_fen:ph.FEN||'', pgn_moves:pgnMoves,
     drv_end, drv_end_iso, drv_start, drv_end_date, drv_end_time, drv_start_date, drv_start_time, drv_duration, drv_result_category_white, drv_is_variant, drv_winner, drv_moves_count,
+    drv_white_outcome: drv_result_category_white,
+    drv_white_score: scoreFromOutcome(drv_result_category_white),
+    drv_black_outcome: resultCategory(black.result),
+    drv_black_score: scoreFromOutcome(resultCategory(black.result)),
   };
   return fields.map(f => csvEscape(map[f]!==undefined?map[f]:''));
 }

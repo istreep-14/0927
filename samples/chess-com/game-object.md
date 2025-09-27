@@ -27,6 +27,10 @@
 | drv_start_date | date | Derived display date from `drv_start` (local date). | 2022-06-04 |
 | drv_start_time | time (HH:MM:SS) | Derived display time from `drv_start` (local time). | 16:21:02 |
 | drv_duration | integer (seconds) | Derived game duration in seconds: `end_time - start_time` when available; else estimate from PGN times if needed. | 915 |
+| drv_white_outcome | string | Derived white outcome: win, lose, or draw (from white.result). | win |
+| drv_white_score | number | Derived white score: 1 for win, 0.5 for draw, 0 for loss. | 1 |
+| drv_black_outcome | string | Derived black outcome: win, lose, or draw (from black.result). | lose |
+| drv_black_score | number | Derived black score: 1 for win, 0.5 for draw, 0 for loss. | 0 |
 | white | object (PlayerRef) | White player details. See PlayerRef below. | { rating: 2843, result: "win", … } |
 | black | object (PlayerRef) | Black player details. See PlayerRef below. | { rating: 2699, result: "50move", … } |
 | eco | string (URL) | Opening reference URL (if available). Points to chess.com Opening Explorer; optional. | https://www.chess.com/openings/Reti-Opening... |

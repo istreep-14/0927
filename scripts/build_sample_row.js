@@ -112,6 +112,13 @@ function resultCategory(res) {
   return draws.has(res) ? 'draw' : '';
 }
 
+function scoreFromOutcome(outcome) {
+  if (outcome === 'win') return '1';
+  if (outcome === 'draw') return '0.5';
+  if (outcome === 'lose') return '0';
+  return '';
+}
+
 function countMoves(pgnMoves) {
   if (!pgnMoves) return '';
   const matches = pgnMoves.match(/\b\d+\./g);
@@ -225,6 +232,10 @@ async function main() {
     drv_is_variant,
     drv_winner: winner,
     drv_moves_count,
+    drv_white_outcome: drv_result_category_white,
+    drv_white_score: scoreFromOutcome(drv_result_category_white),
+    drv_black_outcome: resultCategory(black.result),
+    drv_black_score: scoreFromOutcome(resultCategory(black.result)),
   };
 
   const header = fields.join(',');
