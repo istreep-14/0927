@@ -40,4 +40,43 @@
 - **time_class**: bullet, blitz, rapid, daily
 - **rules**: chess, chess960
 - **result (PlayerRef.result)**:
-`samples/chess-com/result_codes.md`
+  - win, lose, draw
+  - checkmated, resigned, timeout, stalemate
+  - agreed, repetition, insufficient, 50move, abandoned
+  - timevsinsufficient
+  - kingofthehill, threecheck
+  - noresult, cheat
+  - bughousepartnerlose
+
+### Field naming convention
+- Keep API JSON field names as-is (e.g., `time_class`, `end_time`).
+- For values derived from PGN headers, use canonical snake_case keys prefixed with `pgn_` (e.g., `pgn_event`, `pgn_white_elo`).
+
+### PGN headers (derived)
+| Key (canonical) | PGN Header | Type | Description | Example | Notes |
+|---|---|---|---|---|---|
+| pgn_event | Event | string | Event name | Live Chess | Optional. |
+| pgn_site | Site | string | Site identifier | Chess.com | - |
+| pgn_date | Date | string (YYYY.MM.DD) | Local date of game | 2022.06.04 | Use `pgn_utc_date` for UTC. |
+| pgn_round | Round | string | Round identifier | - | Often "-" for live games. |
+| pgn_white | White | string | White player display name | Hikaru | Case may be canonicalized. |
+| pgn_black | Black | string | Black player display name | Oleksandr_Bortnyk | - |
+| pgn_result | Result | string | PGN result code | 1-0 | Redundant with per-player results. |
+| pgn_eco_code | ECO | string | ECO opening code | C70 | - |
+| pgn_eco_url | ECOUrl | string (URL) | Opening reference URL | https://www.chess.com/openings/... | Optional. |
+| pgn_time_control | TimeControl | string | PGN time control | 600 | Mirrors JSON `time_control`. |
+| pgn_termination | Termination | string | Result text | Hikaru won by resignation | Human-readable summary. |
+| pgn_start_time | StartTime | string (HH:MM:SS) | Local start time | 16:21:02 | May be present. |
+| pgn_end_date | EndDate | string (YYYY.MM.DD) | Local end date | 2022.06.04 | Optional. |
+| pgn_end_time | EndTime | string (HH:MM:SS) | Local end time | 16:36:15 | Often without TZ; varies. |
+| pgn_link | Link | string (URL) | Game viewer URL | https://www.chess.com/game/live/48100136511 | - |
+| pgn_opening | Opening | string | Opening name | Ruy Lopez | Optional. |
+| pgn_variation | Variation | string | Opening variation | Cozio Defense | Optional. |
+| pgn_current_position | CurrentPosition | string (FEN) | Snapshot position | 2r1k3/... | Non-standard header used by Chess.com. |
+| pgn_timezone | Timezone | string | Time zone label | UTC | Optional. |
+| pgn_utc_date | UTCDate | string (YYYY.MM.DD) | UTC date | 2022.06.04 | - |
+| pgn_utc_time | UTCTime | string (HH:MM:SS) | UTC time | 16:21:02 | - |
+| pgn_white_elo | WhiteElo | integer | White rating | 2846 | May differ slightly from JSON. |
+| pgn_black_elo | BlackElo | integer | Black rating | 2609 | - |
+| pgn_setup | SetUp | string (0/1) | Indicates non-standard initial position | 1 | When FEN is provided. |
+| pgn_fen | FEN | string (FEN) | Initial position FEN | rnbqkbnr/... | Mirrors JSON `initial_setup` when present. |
