@@ -93,7 +93,3 @@ drv_white_expected_score,number,"Derived: expected score for white (0–1, 4 dec
 drv_black_expected_score,number,"Derived: expected score for black (0–1, 4 decimals)",derived,main
 drv_my_expected_score,number,"Derived: my expected score (0–1, 4 decimals)",derived,main
 drv_opp_expected_score,number,"Derived: opponent expected score (0–1, 4 decimals)",derived,main
-drv_result_category_white,string,"Derived: win/lose/draw for white from white.result",derived,main
-drv_is_variant,boolean,"Derived: rules != 'chess'",derived,main
-drv_winner,string,"Derived: 'white'|'black'|'' for draw",derived,main
-drv_moves_count,integer,"Derived: number of full moves parsed from PGN",derived,meta
