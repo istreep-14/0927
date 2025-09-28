@@ -47,6 +47,33 @@ This document defines names, mappings, and field groups for all outputs. Generat
 - `time_spent`: per-move spend aligned to SAN (if available), single-quoted JSON string.
 - `movetext`: full PGN movetext (headers separate).
 
+### Callback enrichment (unofficial site endpoint)
+Endpoint shape: `https://www.chess.com/callback/{live|daily}/game/{url_numeric_id}` (host/path may vary). Treat as best-effort; subject to change.
+
+- Stable per-game fields to persist (Meta):
+  - `callback_color_of_winner`
+  - `callback_game_end_reason`, `callback_result_message`
+  - `callback_is_live_game`, `callback_is_finished`, `callback_is_rated`, `callback_is_analyzable`, `callback_is_abortable`, `callback_is_resignable`, `callback_is_stalemate`, `callback_is_checkmate`, `callback_allow_vacation`
+  - `callback_type`, `callback_type_name`
+  - `callback_ply_count`
+  - `callback_base_time`, `callback_time_increment`
+  - `callback_move_list` (site TCN-like), `callback_move_timestamps` (CSV)
+  - Player-scoped (stable snapshot per game):
+    - `callback_my_user_id`, `callback_opp_user_id` (numeric ids)
+    - `callback_my_uuid`, `callback_opp_uuid`
+    - `callback_my_username`, `callback_opp_username`
+    - `callback_my_rating_change`, `callback_opp_rating_change` (preferred when non-zero)
+
+- Volatile user fields (optional; snapshots only, may change outside the game):
+  - `callback_*_membership_level`, `callback_*_membership_code`
+  - `callback_*_country_id`, `callback_*_games_in_progress`, `callback_*_is_online`, `callback_*_is_in_livechess`
+  - Avoid avatars/visual-only fields
+
+- Rating deltas logic:
+  - If `callback_*_rating_change` non-zero → source actual
+  - If zero/missing → use estimated (last-based with corrections reflow)
+  - Store: `my_rating_before`, `my_rating_change`, `opp_rating_before`, `opp_rating_change`, `rating_change_source`
+
 ### Field categories
 Use `game-fields.csv` for the canonical list (names/types/origin/scope). High-level groupings:
 - Core game: `game_uuid`, `game_url`, `rules`, `time_class`, `type`, `format`, `eco_url`, `tournament_link`, `match_link`, `tcn`.
