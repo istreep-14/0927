@@ -56,3 +56,58 @@ accuracies.black,number,"Black accuracy percentage (0–100)",json,meta
 san_moves,json-string,"SAN moves array (single-quoted JSON)",derived,meta
 clock_times,json-string,"Post-move clock times aligned to SAN (single-quoted JSON)",derived,meta
 time_spent,json-string,"Per-move time spent aligned to SAN (single-quoted JSON)",derived,meta
+my_rating_before,integer,"My rating before this game (actual or estimated)",derived,meta
+my_rating_change,integer,"My rating change for this game (actual or estimated)",derived,meta
+opp_rating_before,integer,"Opponent rating before this game (actual or estimated)",derived,meta
+opp_rating_change,integer,"Opponent rating change for this game (actual or estimated)",derived,meta
+rating_change_source,string,"Source of rating change: actual|estimated",derived,meta
+enriched_callback,boolean,"Whether callback data has been fetched and stored",derived,meta
+enriched_arrays,boolean,"Whether SAN/clock/time arrays have been computed",derived,meta
+last_updated,datetime,"Last update timestamp for this row",derived,meta
+
+# Callback enrichment (stable per game)
+callback_color_of_winner,string,"Winner color from callback",callback,meta
+callback_game_end_reason,string,"Game end reason from callback",callback,meta
+callback_result_message,string,"Human-readable result message",callback,meta
+callback_is_live_game,boolean,"Is live game flag",callback,meta
+callback_is_finished,boolean,"Is finished flag",callback,meta
+callback_is_rated,boolean,"Is rated flag",callback,meta
+callback_is_analyzable,boolean,"Is analyzable flag",callback,meta
+callback_is_abortable,boolean,"Is abortable flag",callback,meta
+callback_is_resignable,boolean,"Is resignable flag",callback,meta
+callback_is_stalemate,boolean,"Is stalemate flag",callback,meta
+callback_is_checkmate,boolean,"Is checkmate flag",callback,meta
+callback_allow_vacation,boolean,"Vacation allowed flag",callback,meta
+callback_type,string,"Callback game type (e.g., chess)",callback,meta
+callback_type_name,string,"Callback type name (e.g., Standard Chess)",callback,meta
+callback_ply_count,integer,"Ply count from callback",callback,meta
+callback_base_time,integer,"Base time from callback",callback,meta
+callback_time_increment,integer,"Time increment from callback",callback,meta
+callback_move_list,string,"Callback move list encoding",callback,meta
+callback_move_timestamps,string,"Callback per-move timestamps CSV",callback,meta
+
+# Callback player snapshots (stable per game)
+callback_my_user_id,integer,"Numeric user id (me)",callback,meta
+callback_opp_user_id,integer,"Numeric user id (opponent)",callback,meta
+callback_my_uuid,string,"Player UUID (me) from callback",callback,meta
+callback_opp_uuid,string,"Player UUID (opponent) from callback",callback,meta
+callback_my_username,string,"Username (me) from callback",callback,meta
+callback_opp_username,string,"Username (opponent) from callback",callback,meta
+callback_my_rating_change,integer,"Rating change (me) from callback",callback,meta
+callback_opp_rating_change,integer,"Rating change (opponent) from callback",callback,meta
+
+# Callback volatile snapshots (optional but included)
+callback_my_membership_level,string,"Membership level (me)",callback,meta
+callback_opp_membership_level,string,"Membership level (opponent)",callback,meta
+callback_my_membership_code,string,"Membership code (me)",callback,meta
+callback_opp_membership_code,string,"Membership code (opponent)",callback,meta
+callback_my_country_id,integer,"Country id (me)",callback,meta
+callback_opp_country_id,integer,"Country id (opponent)",callback,meta
+callback_my_games_in_progress,integer,"Games in progress (me)",callback,meta
+callback_opp_games_in_progress,integer,"Games in progress (opponent)",callback,meta
+callback_my_is_online,boolean,"Is online (me) at snapshot",callback,meta
+callback_opp_is_online,boolean,"Is online (opponent) at snapshot",callback,meta
+callback_my_is_in_livechess,boolean,"Is in livechess (me)",callback,meta
+callback_opp_is_in_livechess,boolean,"Is in livechess (opponent)",callback,meta
+callback_my_flair_id,string,"Flair id (me) if present",callback,meta
+callback_opp_flair_id,string,"Flair id (opponent) if present",callback,meta
